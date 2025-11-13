@@ -1,0 +1,533 @@
+<!-- ============================================ -->
+<!-- COMPLETE STANDALONE CODE FOR ELEMENTOR -->
+<!-- Copy everything from here and paste in Elementor HTML Widget -->
+<!-- ============================================ -->
+
+<style>
+/* Reset and Container */
+.edjs-spectacle-wrapper * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.edjs-spectacle-section {
+  background-image: url('https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/Asset%209%404x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.edjs-spectacle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/suii%203%404x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.edjs-spectacle-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.edjs-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+  font-family: Arial, sans-serif;
+}
+
+/* Carousel Container */
+.edjs-carousel-container {
+  position: relative;
+  overflow: hidden;
+  padding: 0 60px;
+}
+
+.edjs-carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 30px;
+}
+
+.edjs-slide {
+  min-width: calc(25% - 22.5px);
+  flex-shrink: 0;
+}
+
+/* Card Styles */
+.edjs-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edjs-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.edjs-card-image {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+.edjs-card-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.edjs-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  background: white;
+  border-radius: 15px;
+}
+
+.edjs-card-date {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #BDCF00;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  min-width: 80px;
+  line-height: 1.3;
+}
+
+.edjs-card-content {
+  padding: 20px;
+}
+
+.edjs-card-content a {
+  text-decoration: none;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.edjs-card-content a:hover {
+  color: #BDCF00;
+}
+
+.edjs-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.edjs-card-text {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.edjs-card-footer {
+  padding: 10px 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.edjs-card-link {
+  width: 40px;
+  height: 40px;
+  background: #BDCF00;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 18px;
+}
+
+.edjs-card-link:hover {
+  background: #a5b800;
+  transform: scale(1.1);
+}
+
+/* Navigation Buttons */
+.edjs-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(189, 207, 0, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 20px;
+}
+
+.edjs-nav:hover {
+  background: rgba(189, 207, 0, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.edjs-nav-prev {
+  left: 0;
+}
+
+.edjs-nav-next {
+  right: 0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .edjs-slide {
+    min-width: calc(33.333% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .edjs-title {
+    font-size: 1.8rem;
+  }
+  
+  .edjs-slide {
+    min-width: calc(50% - 15px);
+  }
+  
+  .edjs-carousel-container {
+    padding: 0 50px;
+  }
+  
+  .edjs-card {
+    height: auto;
+    min-height: 450px;
+  }
+  
+  .edjs-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edjs-slide {
+    min-width: 100%;
+  }
+  
+  .edjs-carousel-container {
+    padding: 0 45px;
+  }
+}
+</style>
+
+<!-- HTML Structure -->
+<div class="edjs-spectacle-wrapper">
+  <section class="edjs-spectacle-section">
+    <div class="edjs-spectacle-overlay"></div>
+    
+    <div class="edjs-spectacle-container">
+      <h2 class="edjs-title">DÉCOUVREZ NOTRE PROGRAMMATION</h2>
+      
+      <div class="edjs-carousel-container">
+        <div class="edjs-carousel-track" id="carouselTrack">
+          
+          <!-- Le Petit Prince -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/petite%20prince%20fr.png" alt="Le Petit Prince">
+                </a>
+                <div class="edjs-card-date">OCT<br>2025</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Le Petit Prince</h3>
+                </a>
+                <p class="edjs-card-text">Histoire touchante du Petit Prince<br>adaptée pour tous.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tara sur la Lune -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/tara%20new%20poster%404x.png" alt="Tara sur la Lune">
+                </a>
+                <div class="edjs-card-date">OCT<br>2025</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Tara sur la Lune</h3>
+                </a>
+                <p class="edjs-card-text">Aventure spatiale captivante<br>stimulant l'imagination.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- L'eau-là -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/l'eau%20la.png" alt="L'eau-là">
+                </a>
+                <div class="edjs-card-date">NOV<br>2025</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">L'eau-là</h3>
+                </a>
+                <p class="edjs-card-text">Aventure aquatique sensibilisant<br>à l'importance de l'eau.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mirath Atfal -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/mirath-atfal" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/edjs%20miraat%404x.png" alt="Mirath Atfal">
+                </a>
+                <div class="edjs-card-date">NOV<br>2025</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/mirath-atfal" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Mirath Atfal</h3>
+                </a>
+                <p class="edjs-card-text">Spectacle célébrant héritage<br>culturel marocain.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/mirath-atfal" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simple comme bonjour -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/simple-comme-bonjour" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/simple.png" alt="Simple comme bonjour">
+                </a>
+                <div class="edjs-card-date">DÉC<br>2025</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/simple-comme-bonjour" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Simple comme bonjour</h3>
+                </a>
+                <p class="edjs-card-text">Spectacle interactif enseignant<br>politesse et respect.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/simple-comme-bonjour" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charlotte -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/charlotte" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/charlotte.png" alt="Charlotte">
+                </a>
+                <div class="edjs-card-date">JAN<br>2026</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/charlotte" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Charlotte</h3>
+                </a>
+                <p class="edjs-card-text">Histoire émouvante de Charlotte<br>découvrant l'amitié.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/charlotte" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estevanico -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/estevanico" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/estavine.png" alt="Estevanico">
+                </a>
+                <div class="edjs-card-date">FÉV<br>2026</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/estevanico" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Estevanico</h3>
+                </a>
+                <p class="edjs-card-text">Histoire fascinante d'un<br>explorateur courageux.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/estevanico" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flash -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/flash" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/flash%20%404x.png" alt="Flash">
+                </a>
+                <div class="edjs-card-date">MAR<br>2026</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/flash" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Flash</h3>
+                </a>
+                <p class="edjs-card-text">Comédie musicale sur un papillon<br>en quête de lumière.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/flash" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Antigone -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/antigone" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/antigone.png" alt="Antigone">
+                </a>
+                <div class="edjs-card-date">AVR<br>2026</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/antigone" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Antigone</h3>
+                </a>
+                <p class="edjs-card-text">Tragédie grecque adaptée<br>sensibilisant les jeunes.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/antigone" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alice chez les merveilles -->
+          <div class="edjs-slide">
+            <div class="edjs-card">
+              <div class="edjs-card-image">
+                <a href="https://app.edjs.ma/spectacle/alice-chez-les-merveilles" target="_blank" rel="noopener noreferrer">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/alice%20chez%20le%20.png" alt="Alice chez les merveilles">
+                </a>
+                <div class="edjs-card-date">MAI<br>2026</div>
+              </div>
+              <div class="edjs-card-content">
+                <a href="https://app.edjs.ma/spectacle/alice-chez-les-merveilles" target="_blank" rel="noopener noreferrer">
+                  <h3 class="edjs-card-title">Alice chez les merveilles</h3>
+                </a>
+                <p class="edjs-card-text">Conte merveilleux de Carroll<br>enchantant les jeunes.</p>
+              </div>
+              <div class="edjs-card-footer">
+                <a href="https://app.edjs.ma/spectacle/alice-chez-les-merveilles" target="_blank" rel="noopener noreferrer" class="edjs-card-link">→</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <button class="edjs-nav edjs-nav-prev" onclick="moveCarousel(-1)">‹</button>
+        <button class="edjs-nav edjs-nav-next" onclick="moveCarousel(1)">›</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- JavaScript -->
+<script>
+(function() {
+  let currentIndex = 0;
+  const track = document.getElementById('carouselTrack');
+  const slides = document.querySelectorAll('.edjs-slide');
+  const totalSlides = slides.length;
+  
+  // Get slides per view based on screen width
+  function getSlidesPerView() {
+    const width = window.innerWidth;
+    if (width < 480) return 1;
+    if (width < 768) return 2;
+    if (width < 1200) return 3;
+    return 4;
+  }
+  
+  // Move carousel
+  window.moveCarousel = function(direction) {
+    const slidesPerView = getSlidesPerView();
+    const maxIndex = Math.max(0, totalSlides - slidesPerView);
+    
+    currentIndex += direction;
+    
+    // Loop around
+    if (currentIndex < 0) currentIndex = maxIndex;
+    if (currentIndex > maxIndex) currentIndex = 0;
+    
+    updateCarousel();
+  };
+  
+  function updateCarousel() {
+    const slideWidth = slides[0].offsetWidth;
+    const gap = 30;
+    const offset = -(currentIndex * (slideWidth + gap));
+    track.style.transform = `translateX(${offset}px)`;
+  }
+  
+  // Auto-play
+  setInterval(function() {
+    moveCarousel(1);
+  }, 3000);
+  
+  // Update on resize
+  window.addEventListener('resize', updateCarousel);
+})();
+</script>
