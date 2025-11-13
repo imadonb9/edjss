@@ -1,0 +1,564 @@
+<!-- ============================================ -->
+<!-- EXACT REPLICA - COPY ALL THIS CODE -->
+<!-- ============================================ -->
+
+<style>
+/* Reset */
+.edjs-spectacle-wrapper * {
+  box-sizing: border-box;
+}
+
+.edjs-spectacle-section {
+  background-image: url('https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/Asset%209%404x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.edjs-spectacle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/suii%203%404x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.edjs-spectacle-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.edjs-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+  font-family: Arial, sans-serif;
+}
+
+/* Carousel */
+.edjs-carousel-container {
+  position: relative;
+  overflow: hidden;
+  padding: 0 60px;
+}
+
+.edjs-carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 30px;
+}
+
+.edjs-slide {
+  min-width: calc(25% - 22.5px);
+  flex-shrink: 0;
+}
+
+/* Card with Green Frame */
+.vs-class {
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vs-class__figure {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.vs-class__figure--link {
+  flex: 1;
+  height: 100%;
+  text-decoration: none;
+  display: block;
+}
+
+.vs-class__figure--img {
+  object-fit: contain !important;
+  padding: 10px;
+  background: white;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Date Badge */
+.edjs-date-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #BDCF00;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  min-width: 80px;
+  line-height: 1.3;
+  z-index: 10;
+}
+
+/* Character Overlay */
+.edjs-character {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 80px;
+  height: 100px;
+  z-index: 10;
+}
+
+.edjs-character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Content */
+.vs-class__content {
+  padding: 20px 20px 0 20px;
+  flex-shrink: 0;
+}
+
+.vs-class__heading--link {
+  text-decoration: none;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.vs-class__heading--link:hover {
+  color: #BDCF00;
+}
+
+.vs-class__heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.vs-class__text {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Footer with Arrow */
+.vs-class__bottom {
+  padding: 10px 20px 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs-class__link {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #BDCF00;
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.vs-class__link:hover {
+  background: #a5b800;
+  transform: scale(1.1);
+}
+
+/* Navigation Buttons */
+.edjs-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(189, 207, 0, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 20px;
+}
+
+.edjs-nav:hover {
+  background: rgba(189, 207, 0, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.edjs-nav-prev {
+  left: 0;
+}
+
+.edjs-nav-next {
+  right: 0;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .edjs-slide {
+    min-width: calc(33.333% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .edjs-title {
+    font-size: 1.8rem;
+  }
+  
+  .edjs-slide {
+    min-width: calc(50% - 15px);
+  }
+  
+  .vs-class {
+    height: auto;
+    min-height: 450px;
+  }
+  
+  .edjs-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .edjs-character {
+    width: 60px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edjs-slide {
+    min-width: 100%;
+  }
+  
+  .edjs-carousel-container {
+    padding: 0 45px;
+  }
+}
+</style>
+
+<!-- HTML Structure -->
+<div class="edjs-spectacle-wrapper">
+  <section class="edjs-spectacle-section">
+    <div class="edjs-spectacle-overlay"></div>
+    
+    <div class="edjs-spectacle-container">
+      <h2 class="edjs-title">DÉCOUVREZ NOTRE PROGRAMMATION</h2>
+      
+      <div class="edjs-carousel-container">
+        <div class="edjs-carousel-track" id="carouselTrack">
+          
+          <!-- Le Petit Prince -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/petite%20prince%20fr.png" alt="Le Petit Prince">
+                </a>
+                <div class="edjs-date-badge">OCT<br>2025</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/petit%20prince%404x.png" alt="Le Petit Prince Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Le Petit Prince</h3>
+                </a>
+                <p class="vs-class__text">Histoire touchante du Petit Prince<br>adaptée pour tous.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tara sur la Lune -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/tara%20new%20poster%404x.png" alt="Tara sur la Lune">
+                </a>
+                <div class="edjs-date-badge">OCT<br>2025</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/tara%404x.png" alt="Tara sur la Lune Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Tara sur la Lune</h3>
+                </a>
+                <p class="vs-class__text">Aventure spatiale captivante<br>stimulant l'imagination.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- L'eau-là -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/l'eau%20la.png" alt="L'eau-là">
+                </a>
+                <div class="edjs-date-badge">NOV<br>2025</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/leau%404x.png" alt="L'eau-là Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">L'eau-là</h3>
+                </a>
+                <p class="vs-class__text">Aventure aquatique sensibilisant<br>à l'importance de l'eau.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mirath Atfal -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/mirath-atfal" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/edjs%20miraat%404x.png" alt="Mirath Atfal">
+                </a>
+                <div class="edjs-date-badge">NOV<br>2025</div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/mirath-atfal" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Mirath Atfal</h3>
+                </a>
+                <p class="vs-class__text">Spectacle célébrant héritage<br>culturel marocain.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/mirath-atfal" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simple comme bonjour -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/simple-comme-bonjour" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/simple.png" alt="Simple comme bonjour">
+                </a>
+                <div class="edjs-date-badge">DÉC<br>2025</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/simple%20comme%20bonjour%404x.png" alt="Simple comme bonjour Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/simple-comme-bonjour" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Simple comme bonjour</h3>
+                </a>
+                <p class="vs-class__text">Spectacle interactif enseignant<br>politesse et respect.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/simple-comme-bonjour" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charlotte -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/charlotte" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/charlotte.png" alt="Charlotte">
+                </a>
+                <div class="edjs-date-badge">JAN<br>2026</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/charlotte%404x.png" alt="Charlotte Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/charlotte" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Charlotte</h3>
+                </a>
+                <p class="vs-class__text">Histoire émouvante de Charlotte<br>découvrant l'amitié.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/charlotte" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estevanico -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/estevanico" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/estavine.png" alt="Estevanico">
+                </a>
+                <div class="edjs-date-badge">FÉV<br>2026</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/estevanico%404x.png" alt="Estevanico Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/estevanico" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Estevanico</h3>
+                </a>
+                <p class="vs-class__text">Histoire fascinante d'un<br>explorateur courageux.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/estevanico" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flash -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/flash" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/flash%20%404x.png" alt="Flash">
+                </a>
+                <div class="edjs-date-badge">MAR<br>2026</div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/flash" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Flash</h3>
+                </a>
+                <p class="vs-class__text">Comédie musicale sur un papillon<br>en quête de lumière.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/flash" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Antigone -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/antigone" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/antigone.png" alt="Antigone">
+                </a>
+                <div class="edjs-date-badge">AVR<br>2026</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/PION%20DE%20CHESS.png" alt="Antigone Character" style="width: 120px; height: 160px;">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/antigone" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Antigone</h3>
+                </a>
+                <p class="vs-class__text">Tragédie grecque adaptée<br>sensibilisant les jeunes.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/antigone" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alice chez les merveilles -->
+          <div class="edjs-slide">
+            <div class="vs-class">
+              <div class="vs-class__figure">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/alice-chez-les-merveilles" target="_blank" rel="noopener noreferrer">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/alice%20chez%20le%20.png" alt="Alice chez les merveilles">
+                </a>
+                <div class="edjs-date-badge">MAI<br>2026</div>
+                <div class="edjs-character">
+                  <img src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles%20elements/alice%404x.png" alt="Alice chez les merveilles Character">
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/alice-chez-les-merveilles" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Alice chez les merveilles</h3>
+                </a>
+                <p class="vs-class__text">Conte merveilleux de Carroll<br>enchantant les jeunes.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/alice-chez-les-merveilles" target="_blank" rel="noopener noreferrer" class="vs-class__link">→</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- Navigation -->
+        <button class="edjs-nav edjs-nav-prev" onclick="moveCarousel(-1)">‹</button>
+        <button class="edjs-nav edjs-nav-next" onclick="moveCarousel(1)">›</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- JavaScript -->
+<script>
+(function() {
+  let currentIndex = 0;
+  const track = document.getElementById('carouselTrack');
+  const slides = document.querySelectorAll('.edjs-slide');
+  const totalSlides = slides.length;
+  
+  function getSlidesPerView() {
+    const width = window.innerWidth;
+    if (width < 480) return 1;
+    if (width < 768) return 2;
+    if (width < 1200) return 3;
+    return 4;
+  }
+  
+  window.moveCarousel = function(direction) {
+    const slidesPerView = getSlidesPerView();
+    const maxIndex = Math.max(0, totalSlides - slidesPerView);
+    
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = maxIndex;
+    if (currentIndex > maxIndex) currentIndex = 0;
+    
+    updateCarousel();
+  };
+  
+  function updateCarousel() {
+    const slideWidth = slides[0].offsetWidth;
+    const gap = 30;
+    const offset = -(currentIndex * (slideWidth + gap));
+    track.style.transform = `translateX(${offset}px)`;
+  }
+  
+  setInterval(function() {
+    moveCarousel(1);
+  }, 3000);
+  
+  window.addEventListener('resize', updateCarousel);
+})();
+</script>
