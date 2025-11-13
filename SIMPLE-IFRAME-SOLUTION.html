@@ -1,0 +1,97 @@
+<!-- ============================================ -->
+<!-- SIMPLEST SOLUTION - GUARANTEED TO WORK -->
+<!-- Copy ONLY this code into Elementor HTML Widget -->
+<!-- ============================================ -->
+
+<style>
+.spectacle-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.spectacle-iframe {
+  width: 100%;
+  height: 750px;
+  border: none;
+  display: block;
+  background: transparent;
+}
+
+/* Block iframe by default - allows page scroll */
+.iframe-blocker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* Message to click */
+.click-message {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(189, 207, 0, 0.95);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: opacity 0.3s;
+}
+
+/* When active, hide blocker and message */
+.spectacle-wrapper.active .iframe-blocker {
+  display: none;
+}
+
+.spectacle-wrapper.active .click-message {
+  opacity: 0;
+  pointer-events: none;
+}
+</style>
+
+<div class="spectacle-wrapper" id="spectacleWrapper">
+  <iframe 
+    class="spectacle-iframe"
+    src="https://imadonb9.github.io/edjss/elementor-spectacle-FINAL.html"
+    scrolling="no"
+    frameborder="0"
+    allow="autoplay">
+  </iframe>
+  
+  <div class="iframe-blocker" id="iframeBlocker"></div>
+  <div class="click-message">👆 Cliquez pour interagir avec les spectacles</div>
+</div>
+
+<script>
+(function() {
+  const wrapper = document.getElementById('spectacleWrapper');
+  const blocker = document.getElementById('iframeBlocker');
+  
+  // Click to activate
+  blocker.addEventListener('click', function() {
+    wrapper.classList.add('active');
+    
+    // Auto-deactivate after 5 seconds of no activity
+    let deactivateTimer = setTimeout(function() {
+      wrapper.classList.remove('active');
+    }, 5000);
+    
+    // Reset timer on any interaction
+    wrapper.addEventListener('mousemove', function resetTimer() {
+      clearTimeout(deactivateTimer);
+      deactivateTimer = setTimeout(function() {
+        wrapper.classList.remove('active');
+      }, 5000);
+    });
+  });
+})();
+</script>

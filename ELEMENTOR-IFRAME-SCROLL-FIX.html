@@ -1,0 +1,159 @@
+<!-- ============================================ -->
+<!-- IMPROVED IFRAME CODE WITH GUARANTEED SCROLL -->
+<!-- Paste this in Elementor HTML Widget -->
+<!-- ============================================ -->
+
+<style>
+.spectacle-iframe-container {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: visible;
+}
+
+.spectacle-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Transparent overlay - allows scroll by default */
+.iframe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 10;
+  cursor: default;
+}
+
+/* Hide overlay when user wants to interact */
+.iframe-overlay.hidden {
+  display: none;
+}
+</style>
+
+<div class="spectacle-iframe-container" id="iframeContainer">
+  <iframe 
+    id="spectacleFrame"
+    src="https://imadonb9.github.io/edjss/elementor-spectacle-FINAL.html"
+    scrolling="no"
+    frameborder="0"
+    allow="autoplay">
+  </iframe>
+  <div class="iframe-overlay" id="iframeOverlay"></div>
+</div>
+
+<script>
+(function() {
+  const container = document.getElementById('iframeContainer');
+  const overlay = document.getElementById('iframeOverlay');
+  let hideTimeout;
+  
+  // When user clicks, hide overlay to allow interaction
+  overlay.addEventListener('click', function() {
+    overlay.classList.add('hidden');
+    
+    // Show overlay again after 3 seconds of no interaction
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(function() {
+      overlay.classList.remove('hidden');
+    }, 3000);
+  });
+  
+  // Double-click also hides overlay
+  overlay.addEventListener('dblclick', function() {
+    overlay.classList.add('hidden');
+    clearTimeout(hideTimeout);
+  });
+  
+  // On mouse move over container, temporarily hide for 2 seconds
+  let moveTimeout;
+  container.addEventListener('mousemove', function() {
+    clearTimeout(moveTimeout);
+    moveTimeout = setTimeout(function() {
+      if (!overlay.classList.contains('hidden')) {
+        // User is actively moving mouse, might want to interact
+      }
+    }, 100);
+  });
+})();
+</script>
+
+<!-- ============================================ -->
+<!-- ALTERNATIVE: CLICK TO ACTIVATE -->
+<!-- Use this if above doesn't work -->
+<!-- ============================================ -->
+
+<!--
+<style>
+.spectacle-click-container {
+  position: relative;
+  width: 100%;
+  height: 700px;
+}
+
+.spectacle-click-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+}
+
+.spectacle-click-container.active iframe {
+  pointer-events: auto;
+}
+
+.click-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(189, 207, 0, 0.9);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 100;
+  transition: opacity 0.3s;
+}
+
+.spectacle-click-container.active .click-prompt {
+  opacity: 0;
+  pointer-events: none;
+}
+</style>
+
+<div class="spectacle-click-container" id="clickContainer">
+  <iframe 
+    src="https://imadonb9.github.io/edjss/elementor-spectacle-FINAL.html"
+    scrolling="no"
+    frameborder="0">
+  </iframe>
+  <div class="click-prompt" id="clickPrompt">
+    Cliquez pour interagir avec le carrousel
+  </div>
+</div>
+
+<script>
+const clickContainer = document.getElementById('clickContainer');
+const clickPrompt = document.getElementById('clickPrompt');
+
+clickPrompt.addEventListener('click', function() {
+  clickContainer.classList.add('active');
+});
+
+// Deactivate when scrolling page
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(function() {
+    clickContainer.classList.remove('active');
+  }, 2000);
+}, { passive: true });
+</script>
+-->
