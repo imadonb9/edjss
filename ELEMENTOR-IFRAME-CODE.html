@@ -1,0 +1,143 @@
+<!-- ============================================ -->
+<!-- IFRAME CODE FOR ELEMENTOR -->
+<!-- Paste this in an Elementor HTML Widget -->
+<!-- ============================================ -->
+
+<style>
+.spectacle-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.spectacle-iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  display: block;
+  pointer-events: auto;
+}
+
+/* Allow scrolling through iframe when not hovering interactive elements */
+.spectacle-iframe-wrapper:not(.iframe-active) .spectacle-iframe {
+  pointer-events: none;
+}
+
+.spectacle-iframe-wrapper.iframe-active .spectacle-iframe {
+  pointer-events: auto;
+}
+</style>
+
+<div class="spectacle-iframe-wrapper" id="spectacleIframeWrapper">
+  <iframe 
+    class="spectacle-iframe" 
+    id="spectacleIframe"
+    src="https://raw.githack.com/imadonb9/edjss/main/elementor-spectacle-FINAL.html"
+    scrolling="no"
+    allow="autoplay"
+    loading="lazy">
+  </iframe>
+</div>
+
+<script>
+(function() {
+  const wrapper = document.getElementById('spectacleIframeWrapper');
+  const iframe = document.getElementById('spectacleIframe');
+  
+  let isHovering = false;
+  let hoverTimeout;
+  
+  // Enable iframe interactions when hovering
+  wrapper.addEventListener('mouseenter', function() {
+    clearTimeout(hoverTimeout);
+    hoverTimeout = setTimeout(function() {
+      wrapper.classList.add('iframe-active');
+      isHovering = true;
+    }, 100);
+  });
+  
+  // Disable iframe to allow page scroll when not hovering
+  wrapper.addEventListener('mouseleave', function() {
+    clearTimeout(hoverTimeout);
+    hoverTimeout = setTimeout(function() {
+      wrapper.classList.remove('iframe-active');
+      isHovering = false;
+    }, 100);
+  });
+  
+  // Detect clicks and enable iframe temporarily
+  wrapper.addEventListener('click', function() {
+    wrapper.classList.add('iframe-active');
+    isHovering = true;
+    
+    // Keep active for 2 seconds after click
+    clearTimeout(hoverTimeout);
+    hoverTimeout = setTimeout(function() {
+      if (!isHovering) {
+        wrapper.classList.remove('iframe-active');
+      }
+    }, 2000);
+  });
+  
+  // Handle scroll wheel
+  wrapper.addEventListener('wheel', function(e) {
+    if (!wrapper.classList.contains('iframe-active')) {
+      // Allow page scroll
+      return true;
+    }
+  }, { passive: true });
+  
+  // Auto-adjust iframe height based on content
+  function adjustIframeHeight() {
+    try {
+      if (iframe.contentWindow && iframe.contentWindow.document) {
+        const iframeDoc = iframe.contentWindow.document;
+        const height = iframeDoc.documentElement.scrollHeight || iframeDoc.body.scrollHeight;
+        if (height > 0) {
+          iframe.style.height = height + 'px';
+          wrapper.style.minHeight = height + 'px';
+        }
+      }
+    } catch (e) {
+      // Cross-origin restriction, use default height
+      console.log('Using default iframe height');
+    }
+  }
+  
+  // Try to adjust height after load
+  iframe.addEventListener('load', function() {
+    setTimeout(adjustIframeHeight, 500);
+    setTimeout(adjustIframeHeight, 1500);
+  });
+  
+  // Initial state: allow scroll through
+  wrapper.classList.remove('iframe-active');
+})();
+</script>
+
+<!-- ============================================ -->
+<!-- ALTERNATIVE: SIMPLE VERSION -->
+<!-- Use this if the above doesn't work well -->
+<!-- ============================================ -->
+
+<!--
+<style>
+.simple-spectacle-iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  display: block;
+}
+</style>
+
+<iframe 
+  class="simple-spectacle-iframe"
+  src="https://raw.githack.com/imadonb9/edjss/main/elementor-spectacle-FINAL.html"
+  scrolling="no"
+  allow="autoplay"
+  loading="lazy">
+</iframe>
+-->
