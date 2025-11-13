@@ -77,7 +77,7 @@
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 550px;
+  height: 450px;
   display: flex;
   flex-direction: column;
 }
@@ -89,11 +89,12 @@
 
 .edjs-card-image {
   position: relative;
-  flex: 1;
+  height: 250px;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   background: #f8f9fa;
+  flex-shrink: 0;
 }
 
 .edjs-card-image a {
@@ -127,7 +128,8 @@
 }
 
 .edjs-card-content {
-  padding: 20px;
+  padding: 15px 20px;
+  flex-grow: 1;
 }
 
 .edjs-card-content a {
@@ -141,15 +143,15 @@
 }
 
 .edjs-card-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .edjs-card-text {
   color: #666;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .edjs-card-footer {
