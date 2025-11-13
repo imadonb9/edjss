@@ -1,0 +1,354 @@
+<!-- ============================================ -->
+<!-- STEP 1: Add these CSS links in WordPress Head -->
+<!-- Go to: Appearance > Customize > Additional CSS or use a plugin -->
+<!-- ============================================ -->
+
+<!--
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+-->
+
+<!-- ============================================ -->
+<!-- STEP 2: Add this CSS in your Elementor Custom CSS or theme CSS -->
+<!-- ============================================ -->
+
+<style>
+/* Spectacle Section Styles */
+.edjs-spectacle-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 60px 0;
+  position: relative;
+}
+
+.edjs-spectacle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.edjs-spectacle-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.vs-title__main {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: 'Arial', sans-serif;
+}
+
+.vs-class {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.vs-class:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.vs-class__figure {
+  position: relative;
+  background: #f8f9fa;
+}
+
+.vs-class__figure--link {
+  display: block;
+  text-decoration: none;
+}
+
+.vs-class__figure--img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vs-class__content {
+  padding: 20px;
+}
+
+.vs-class__heading--link {
+  text-decoration: none;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.vs-class__heading--link:hover {
+  color: #BDCF00;
+}
+
+.vs-class__heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.vs-class__text {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.vs-class__bottom {
+  padding: 10px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs-class__link {
+  width: 40px;
+  height: 40px;
+  background: #BDCF00;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.vs-class__link:hover {
+  background: #a5b800;
+  transform: scale(1.1);
+}
+
+/* Swiper Navigation Buttons */
+.nav-prev-1, .nav-next-2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: rgba(189, 207, 0, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.nav-prev-1:hover, .nav-next-2:hover {
+  background: rgba(189, 207, 0, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-prev-1 {
+  left: 10px;
+}
+
+.nav-next-2 {
+  right: 10px;
+}
+
+.nav-prev-1 svg, .nav-next-2 svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .vs-title__main {
+    font-size: 1.8rem;
+  }
+  
+  .vs-class {
+    height: auto !important;
+    min-height: 450px;
+  }
+  
+  .nav-prev-1, .nav-next-2 {
+    width: 40px;
+    height: 40px;
+  }
+}
+</style>
+
+<!-- ============================================ -->
+<!-- STEP 3: Add this HTML in Elementor HTML Widget -->
+<!-- ============================================ -->
+
+<section class="edjs-spectacle-section" style="background-image: url('https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/Asset%209%404x.png');">
+  <!-- Theater Curtains Overlay -->
+  <div class="edjs-spectacle-overlay" style="background-image: url('https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/suii%203%404x.png');"></div>
+  
+  <div class="edjs-spectacle-container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="vs-title__main">DÉCOUVREZ NOTRE PROGRAMMATION</h2>
+      </div>
+    </div>
+    
+    <div class="position-relative" style="z-index: 2;">
+      <div class="swiper edjs-swiper-carousel">
+        <div class="swiper-wrapper">
+          
+          <!-- Le Petit Prince -->
+          <div class="swiper-slide">
+            <div class="vs-class" style="height: 550px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="vs-class__figure" style="position: relative; flex: 1; display: flex; align-items: center; padding: 20px;">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer" style="flex: 1; height: 100%;">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/petite%20prince%20fr.png" alt="Le Petit Prince" style="object-fit: contain !important; padding: 10px; background: white; border-radius: 15px; width: 100%; height: 100%;">
+                </a>
+                <div style="position: absolute; top: 20px; right: 20px; background: #BDCF00; color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
+                  OCT<br>2025
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Le Petit Prince</h3>
+                </a>
+                <p class="vs-class__text">Histoire touchante du Petit Prince<br>adaptée pour tous.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/le-petit-prince" target="_blank" rel="noopener noreferrer" class="vs-class__link">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tara sur la Lune -->
+          <div class="swiper-slide">
+            <div class="vs-class" style="height: 550px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="vs-class__figure" style="position: relative; flex: 1; display: flex; align-items: center; padding: 20px;">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer" style="flex: 1; height: 100%;">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/tara%20new%20poster%404x.png" alt="Tara sur la Lune" style="object-fit: contain !important; padding: 10px; background: white; border-radius: 15px; width: 100%; height: 100%;">
+                </a>
+                <div style="position: absolute; top: 20px; right: 20px; background: #BDCF00; color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
+                  OCT<br>2025
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">Tara sur la Lune</h3>
+                </a>
+                <p class="vs-class__text">Aventure spatiale captivante<br>stimulant l'imagination.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/tara-sur-la-lune" target="_blank" rel="noopener noreferrer" class="vs-class__link">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- L'eau-là -->
+          <div class="swiper-slide">
+            <div class="vs-class" style="height: 550px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="vs-class__figure" style="position: relative; flex: 1; display: flex; align-items: center; padding: 20px;">
+                <a class="vs-class__figure--link" href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer" style="flex: 1; height: 100%;">
+                  <img class="vs-class__figure--img" src="https://raw.githubusercontent.com/imadonb9/edjss/main/assets/img/spectacles/l'eau%20la.png" alt="L'eau-là" style="object-fit: contain !important; padding: 10px; background: white; border-radius: 15px; width: 100%; height: 100%;">
+                </a>
+                <div style="position: absolute; top: 20px; right: 20px; background: #BDCF00; color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; min-width: 80px;">
+                  NOV<br>2025
+                </div>
+              </div>
+              <div class="vs-class__content">
+                <a class="vs-class__heading--link" href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer">
+                  <h3 class="vs-class__heading">L'eau-là</h3>
+                </a>
+                <p class="vs-class__text">Aventure aquatique sensibilisant<br>à l'importance de l'eau.</p>
+              </div>
+              <div class="vs-class__bottom">
+                <a href="https://app.edjs.ma/spectacle/leau-la" target="_blank" rel="noopener noreferrer" class="vs-class__link">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add more spectacles as needed following the same pattern -->
+          
+        </div>
+      </div>
+      
+      <!-- Navigation Buttons -->
+      <div id="swiper-button-prev" class="nav-prev-1">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+      <div id="swiper-button-next" class="nav-next-2">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- STEP 4: Add these JavaScript libraries before closing </body> tag -->
+<!-- Go to: WordPress Admin > Appearance > Theme File Editor > footer.php -->
+<!-- Or use a plugin like "Insert Headers and Footers" -->
+<!-- ============================================ -->
+
+<!--
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+-->
+
+<!-- ============================================ -->
+<!-- STEP 5: Add this JavaScript code (same place as Step 4) -->
+<!-- ============================================ -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Swiper Carousel
+  var swiper = new Swiper('.edjs-swiper-carousel', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '#swiper-button-next',
+      prevEl: '#swiper-button-prev',
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      1280: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+      },
+    }
+  });
+});
+</script>
